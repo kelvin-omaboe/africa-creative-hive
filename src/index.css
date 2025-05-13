@@ -74,8 +74,24 @@
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground font-sans antialiased;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Improve form elements on mobile */
+  input, select, textarea {
+    @apply text-base md:text-sm;
+    font-size: 16px; /* Prevents iOS zoom on focus */
+  }
+
+  /* Better focus styles for accessibility */
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
   }
 }
 
@@ -98,5 +114,45 @@
     background-image: radial-gradient(#c09650 0.5px, transparent 0.5px);
     background-size: 10px 10px;
     opacity: 0.3;
+  }
+
+  /* Responsive container utils */
+  .container-sm {
+    @apply max-w-screen-sm mx-auto px-4;
+  }
+
+  .container-md {
+    @apply max-w-screen-md mx-auto px-4;
+  }
+
+  .container-lg {
+    @apply max-w-screen-lg mx-auto px-4;
+  }
+
+  .container-xl {
+    @apply max-w-screen-xl mx-auto px-4;
+  }
+
+  /* Skeleton loader */
+  .skeleton {
+    @apply bg-muted animate-pulse rounded;
+  }
+
+  /* Mobile-optimized buttons */
+  .btn-mobile {
+    @apply min-h-[44px]; /* Minimum tap target size */
+  }
+
+  /* Animation utils */
+  .animate-fade {
+    @apply animate-in fade-in duration-500;
+  }
+  
+  .animate-slide-up {
+    @apply animate-in slide-in-from-bottom duration-500;
+  }
+  
+  .animate-slide-down {
+    @apply animate-in slide-in-from-top duration-500;
   }
 }
