@@ -1,13 +1,13 @@
 
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Gallery, Users, Calendar, Wallet } from "lucide-react";
+import { ImageIcon, Users, Calendar, Wallet } from "lucide-react";
 
 const features = [
   {
     title: "Showcase Your Work",
     description: "Upload your portfolio and get discovered by fans, collaborators, and clients across Africa.",
-    icon: <Gallery className="h-8 w-8 text-crib-terracotta" />,
+    icon: <ImageIcon className="h-8 w-8 text-crib-terracotta" />,
   },
   {
     title: "Collaborate",
