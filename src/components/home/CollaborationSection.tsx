@@ -31,6 +31,30 @@ const sampleProjects = [
     },
     tags: ["Fashion", "Photography", "Modeling"],
     interested: 7
+  },
+  {
+    id: "3",
+    title: "Natural Hair Styling Workshop",
+    description: "Professional hairstylist looking for models and a venue to host a natural hair styling workshop and photoshoot.",
+    creator: {
+      name: "Zainab Diallo",
+      avatar: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=200&h=200&auto=format&fit=crop",
+      role: "Hair Stylist"
+    },
+    tags: ["Beauty", "Hair", "Workshop"],
+    interested: 5
+  },
+  {
+    id: "4",
+    title: "Handcrafted Footwear Collection",
+    description: "Shoe artisan seeking leather suppliers and marketers for my new line of handcrafted African-inspired footwear.",
+    creator: {
+      name: "Taiwo Adebayo",
+      avatar: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?q=80&w=200&h=200&auto=format&fit=crop",
+      role: "Shoe Designer"
+    },
+    tags: ["Fashion", "Footwear", "Craftsmanship"],
+    interested: 3
   }
 ];
 
@@ -53,7 +77,7 @@ const CollaborationSection: React.FC = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {sampleProjects.map((project) => (
+          {sampleProjects.slice(0, 4).map((project) => (
             <Card key={project.id} className="card-hover">
               <CardHeader>
                 <div className="flex justify-between items-start">

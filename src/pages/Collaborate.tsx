@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { AuthProvider } from "@/contexts/AuthContext";
 import Navbar from "@/components/layout/Navbar";
@@ -73,6 +72,36 @@ const collaborationProjects = [
     deadline: "2023-09-15",
     location: "Nairobi, Kenya",
     remote: true
+  },
+  {
+    id: "5",
+    title: "Natural Hair Styling Workshop",
+    description: "Professional hairstylist looking for models and a venue to host a natural hair styling workshop and photoshoot. The workshop will focus on traditional and modern protective styling techniques.",
+    creator: {
+      name: "Zainab Diallo",
+      avatar: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=200&h=200&auto=format&fit=crop",
+      role: "Hair Stylist"
+    },
+    tags: ["Beauty", "Hair", "Workshop"],
+    interested: 5,
+    deadline: "2023-07-20",
+    location: "Dakar, Senegal",
+    remote: false
+  },
+  {
+    id: "6",
+    title: "Handcrafted Footwear Collection",
+    description: "Shoe artisan seeking leather suppliers and marketers for my new line of handcrafted African-inspired footwear. Looking to combine traditional techniques with contemporary designs.",
+    creator: {
+      name: "Taiwo Adebayo",
+      avatar: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?q=80&w=200&h=200&auto=format&fit=crop",
+      role: "Shoe Designer"
+    },
+    tags: ["Fashion", "Footwear", "Craftsmanship"],
+    interested: 3,
+    deadline: "2023-08-30",
+    location: "Addis Ababa, Ethiopia",
+    remote: true
   }
 ];
 
@@ -146,6 +175,8 @@ const CollaboratePage: React.FC = () => {
                           <Badge variant="outline" className="cursor-pointer hover:bg-accent">Fashion</Badge>
                           <Badge variant="outline" className="cursor-pointer hover:bg-accent">Film</Badge>
                           <Badge variant="outline" className="cursor-pointer hover:bg-accent">Writing</Badge>
+                          <Badge variant="outline" className="cursor-pointer hover:bg-accent">Hair</Badge>
+                          <Badge variant="outline" className="cursor-pointer hover:bg-accent">Footwear</Badge>
                         </div>
                       </div>
                       
