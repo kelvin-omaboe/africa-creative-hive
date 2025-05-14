@@ -55,7 +55,7 @@ const Hero: React.FC = () => {
                 asChild
                 size="lg" 
                 variant="outline" 
-                className="border-white text-white hover:bg-white/10"
+                className="border-white bg-crib-earth/30 text-white hover:bg-crib-earth/40"
               >
                 <Link to="/discover">Explore First</Link>
               </Button>
