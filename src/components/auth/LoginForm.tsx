@@ -20,12 +20,10 @@ const LoginForm: React.FC<{ onToggleForm: () => void }> = ({ onToggleForm }) => 
     e.preventDefault();
     try {
       await login(email, password);
-      toast({
-        title: "Welcome back!",
-        description: "You've successfully logged in.",
-      });
+      // Success is handled in the AuthContext
     } catch (err) {
-      // Error is handled in auth context
+      // Error is handled in AuthContext
+      console.error("Login failed:", err);
     }
   };
 

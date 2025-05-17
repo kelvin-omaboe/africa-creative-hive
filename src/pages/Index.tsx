@@ -1,6 +1,5 @@
 
 import React, { useEffect } from "react";
-import { AuthProvider } from "@/contexts/AuthContext";
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/home/Hero";
 import FeatureHighlights from "@/components/home/FeatureHighlights";
@@ -18,21 +17,19 @@ const Index: React.FC = () => {
   }, []);
 
   return (
-    <AuthProvider>
-      <div className="min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-grow pt-16">
-          <Hero />
-          <FeatureHighlights />
-          <FeaturedCreatives />
-          <CollaborationSection />
-          <EventsSection />
-          <TestimonialsSection />
-          <CallToAction />
-        </main>
-        <Footer />
-      </div>
-    </AuthProvider>
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+      <main className="flex-grow pt-16">
+        <Hero />
+        <FeatureHighlights />
+        <FeaturedCreatives />
+        <CollaborationSection />
+        <EventsSection />
+        <TestimonialsSection />
+        <CallToAction />
+      </main>
+      <Footer />
+    </div>
   );
 };
 

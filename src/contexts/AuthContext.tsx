@@ -1,5 +1,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 // Define user types
 export type UserRole = "artist" | "viewer" | "admin";
@@ -78,6 +80,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [allUsers] = useState<User[]>(DEMO_USERS); // For demo purposes
+  const navigate = useNavigate();
   
   // Check for existing user session
   useEffect(() => {
@@ -88,67 +91,80 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setIsLoading(false);
   }, []);
 
-  const login = async (email: string, password: string) => {
-    setIsLoading(true);
-    setError(null);
-    try {
-      // Mock API call
+  const login = async (email: string, password: string): Promise<void> => {
+    return new Promise((resolve, reject) => {
+      setIsLoading(true);
+      setError(null);
+      
+      // Mock API call using setTimeout
       setTimeout(() => {
-        const foundUser = DEMO_USERS.find(u => u.email === email);
-        if (foundUser && password === "password") { // Simple password for demo
-          setUser(foundUser);
-          localStorage.setItem("crib_user", JSON.stringify(foundUser));
-          
-          // Redirect user to dashboard - use window.location for a full reload
-          window.location.href = "/dashboard";
-        } else {
-          throw new Error("Invalid credentials");
+        try {
+          const foundUser = DEMO_USERS.find(u => u.email === email);
+          if (foundUser && password === "password") { // Simple password for demo
+            setUser(foundUser);
+            localStorage.setItem("crib_user", JSON.stringify(foundUser));
+            toast.success("Welcome back! You've successfully logged in.");
+            navigate("/dashboard");
+            resolve();
+          } else {
+            throw new Error("Invalid email or password");
+          }
+        } catch (err) {
+          setError(err instanceof Error ? err.message : "An error occurred");
+          reject(err);
+        } finally {
+          setIsLoading(false);
         }
-        setIsLoading(false);
       }, 800);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "An error occurred");
-      setIsLoading(false);
-    }
+    });
   };
 
-  const register = async (email: string, password: string, name: string, role: UserRole, artistType?: string) => {
-    setIsLoading(true);
-    setError(null);
-    try {
-      // Mock API call
+  const register = async (email: string, password: string, name: string, role: UserRole, artistType?: string): Promise<void> => {
+    return new Promise((resolve, reject) => {
+      setIsLoading(true);
+      setError(null);
+      
+      // Mock API call using setTimeout
       setTimeout(() => {
-        const newUser: User = {
-          id: `user-${Date.now()}`,
-          name,
-          email,
-          role,
-          artistType,
-          followers: 0,
-          following: 0,
-          collaborations: 0,
-          works: 0
-        };
-        setUser(newUser);
-        localStorage.setItem("crib_user", JSON.stringify(newUser));
-        
-        // Redirect user to dashboard - use window.location for a full reload
-        window.location.href = "/dashboard";
-        
-        setIsLoading(false);
+        try {
+          // Check if user already exists
+          const existingUser = DEMO_USERS.find(u => u.email === email);
+          if (existingUser) {
+            throw new Error("User with this email already exists");
+          }
+          
+          const newUser: User = {
+            id: `user-${Date.now()}`,
+            name,
+            email,
+            role,
+            artistType,
+            followers: 0,
+            following: 0,
+            collaborations: 0,
+            works: 0
+          };
+          
+          setUser(newUser);
+          localStorage.setItem("crib_user", JSON.stringify(newUser));
+          toast.success("Welcome to The Crib! Your account has been created successfully.");
+          navigate("/dashboard");
+          resolve();
+        } catch (err) {
+          setError(err instanceof Error ? err.message : "An error occurred");
+          reject(err);
+        } finally {
+          setIsLoading(false);
+        }
       }, 800);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "An error occurred");
-      setIsLoading(false);
-    }
+    });
   };
 
   const logout = () => {
     setUser(null);
     localStorage.removeItem("crib_user");
-    
-    // Redirect to home page after logout
-    window.location.href = "/";
+    toast.info("You've been logged out successfully");
+    navigate("/");
   };
 
   return (
