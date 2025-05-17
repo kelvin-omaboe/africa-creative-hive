@@ -45,6 +45,19 @@ const DEMO_USERS: User[] = [
     following: 214,
     collaborations: 32,
     works: 47
+  },
+  {
+    id: "3",
+    name: "Zainab Ahmed",
+    email: "zainab@example.com",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&h=200&auto=format&fit=crop",
+    bio: "Fashion designer creating modern African-inspired pieces.",
+    role: "artist",
+    artistType: "Fashion Design",
+    followers: 873,
+    following: 129,
+    collaborations: 18,
+    works: 42
   }
 ];
 
@@ -85,6 +98,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         if (foundUser && password === "password") { // Simple password for demo
           setUser(foundUser);
           localStorage.setItem("crib_user", JSON.stringify(foundUser));
+          
+          // Redirect user to dashboard - use window.location for a full reload
+          window.location.href = "/dashboard";
         } else {
           throw new Error("Invalid credentials");
         }
@@ -115,6 +131,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         };
         setUser(newUser);
         localStorage.setItem("crib_user", JSON.stringify(newUser));
+        
+        // Redirect user to dashboard - use window.location for a full reload
+        window.location.href = "/dashboard";
+        
         setIsLoading(false);
       }, 800);
     } catch (err) {
@@ -126,6 +146,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const logout = () => {
     setUser(null);
     localStorage.removeItem("crib_user");
+    
+    // Redirect to home page after logout
+    window.location.href = "/";
   };
 
   return (

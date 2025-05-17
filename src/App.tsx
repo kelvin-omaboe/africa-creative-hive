@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
 
 import Index from "./pages/Index";
+import Dashboard from "./pages/Dashboard"; // Add import for Dashboard
 import NotFound from "./pages/NotFound";
 import CollaboratePage from "./pages/Collaborate";
 
@@ -27,6 +28,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/dashboard" element={<Dashboard />} /> {/* Add Dashboard route */}
             <Route path="/collaborate" element={<CollaboratePage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
